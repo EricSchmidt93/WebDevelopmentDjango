@@ -17,5 +17,6 @@ class MainView(TemplateView):
 		context = super(MainView, self).get_context_data(**kwargs)
 		
 		context['today'] = datetime.date.today()
+		context['time'] = datetime.datetime.now().time()
 		
 		return context
