@@ -18,5 +18,6 @@ class MainView(TemplateView):
 		
 		context['today'] = datetime.date.today()
 		context['time'] = datetime.datetime.now().time()
+		context['hideBack'] = True
 		
 		return context

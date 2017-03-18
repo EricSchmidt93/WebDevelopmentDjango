@@ -31,9 +31,16 @@ class CreateTeamView(CreateView):
     fields = ['name', 'topic']
         
     
-class TeamView(TemplateView):
+class TeamView(DetailView):
 
     """
-    Dummy
+    Teamseite
     """
-    template_name = "home.html"
+    template_name = "team/team.html"
+    model = Team
+    context_object_name = "team"
+    
+    def get_object(self):
+        return Team.objects.get(pk = self.kwargs['team_id'])
+    
+    

@@ -4,7 +4,7 @@
 <h2>Teams:</h2>
 <ul>
 {% for team in teams %}
-<li>{{ team.name }}</li>
+<li><a href="{% url 'teams:team' team.id %}">{{ team.name }}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}

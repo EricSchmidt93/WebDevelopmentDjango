@@ -4,10 +4,14 @@
 	</head>
 		<meta charset="utf-8">
 	<body>
-		<h1>Title</h1>
+		<h1><a href="{% url 'home' %}">Teammanagement</a></h1>
 		<div id="content">
 			{% block content %}
 			{% endblock %}
 		</div>
+		
+		{% if not hideBack %}
+		<a href="{{ request.META.HTTP_REFERER }}">back</a>
+		{% endif %}
 	</body>
 </html>

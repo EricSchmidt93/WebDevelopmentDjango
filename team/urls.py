@@ -9,5 +9,5 @@ from .views import HomeView, TeamView, CreateTeamView
 urlpatterns = [
 	url(r'^$', HomeView.as_view(), name='home'),
 	url(r'^create/$', CreateTeamView.as_view(), name='create'),
-	#url(r'^(?P<team_id>-?\d+)/$', TeamView.as_view(), name='team'),
+	url(r'^(?P<team_id>-?\d+)/$', TeamView.as_view(), name='team'),
 ]
