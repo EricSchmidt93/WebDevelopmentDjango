@@ -2,9 +2,20 @@
 
 {% block content %}
 <h2>Teams:</h2>
+{% if teams %}
 <ul>
 {% for team in teams %}
-<li><a href="{% url 'teams:team' team.id %}">{{ team.name }}</a></li>
+	<li>
+		<a href="{% url 'teams:team' team.id %}">{{ team.name }}</a>
+		<form method="POST" action="{% url 'teams:deleteTeam' team.id %}">
+			{% csrf_token %}
+			<input type="submit" value="delete">
+		</form>
+	</li>
 {% endfor %}
 </ul>
+<div><a href="{% url 'teams:create' %}">create a new team</a></div>
+{% else %}
+<div>No teams have been created yet. <a href="{% url 'teams:create' %}">Create One</a></div>
+{% endif %}
 {% endblock %}

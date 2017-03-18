@@ -3,4 +3,20 @@
 {% block content %}
 <h2>{{ team.name }}</h2>
 <h3>{{ team.topic }}</h3>
+
+{% if teamMembers %}
+<ul>
+	{% for member in teamMembers %}
+	<li>{{ member.name }}, {{ member.short }}
+		<form method="POST" action="{% url 'members:deleteMember' member.id %}">
+			{% csrf_token %}
+			<input type="submit" value="delete">
+		</form>
+	</li>
+	{% endfor %}
+</ul>
+<div><a href="{% url 'members:create' %}">add a member</a></div>
+{% else %}
+<div>No members were added to this team yet. <a href="{% url 'members:create' %}">Add One</a></div>
+{% endif %}
 {% endblock %}
