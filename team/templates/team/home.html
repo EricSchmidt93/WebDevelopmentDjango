@@ -1,21 +1,43 @@
 {% extends 'base.html' %}
 
+{% block pageHeader %}
+<h1>Teams</h1>
+{% endblock %}
+
 {% block content %}
-<h2>Teams:</h2>
 {% if teams %}
-<ul>
-{% for team in teams %}
-	<li>
-		<a href="{% url 'teams:team' team.id %}">{{ team.name }}</a>
-		<form method="POST" action="{% url 'teams:deleteTeam' team.id %}">
-			{% csrf_token %}
-			<input type="submit" value="delete">
-		</form>
-	</li>
-{% endfor %}
-</ul>
-<div><a href="{% url 'teams:create' %}">create a new team</a></div>
+<div>
+    <table class="table table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Team Name</th>
+				<th></th>
+			</tr>
+        </thead>
+        <tbody>
+		{% for team in teams %}
+			<tr>
+                <td>{{ team.id }}</td>
+                <td><a href="{% url 'teams:team' team.id %}">{{ team.name }}</a></td>
+                <td>
+					<form method="POST" action="{% url 'teams:deleteTeam' team.id %}">
+					{% csrf_token %}
+						<button type="submit" class="btn btn-xs btn-danger">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
+					</form>
+				</td>
+            </tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>
 {% else %}
-<div>No teams have been created yet. <a href="{% url 'teams:create' %}">Create One</a></div>
+<div>No teams have been created yet.</div>
 {% endif %}
+{% endblock %}
+
+{% block next %}
+<a class="btn btn-success pull-right" href="{% url 'teams:create' %}">create a new team</a>
 {% endblock %}

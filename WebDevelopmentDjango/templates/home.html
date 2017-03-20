@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<h2>{{ today }}, {{ time }}</h2>
+{% block navbar %}
+<li><p class="navbar-text">{{ today }}, {{ time }}</p></li>
+{% endblock %}
 
-<a href="{% url 'teams:home' %}">Team List</a>
+{% block pageHeader %}
+<h1>Teammanagement</h1>
+{% endblock %}
+
+{% block content %}
+<p>Simple example application using Django.</p>
 <!--a href="{% url 'teams:create' %}">Create a Team</a>
 <a href="{% url 'members:create' %}">Add a Member</a-->
+{% endblock %}
+
+{% block next %}
+<a class="btn btn-primary pull-right" href="{% url 'teams:home' %}">Team List &raquo;</a>
 {% endblock %}
