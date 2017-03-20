@@ -1,22 +1,45 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<h2>{{ team.name }}</h2>
-<h3>{{ team.topic }}</h3>
+{% block pageHeader %}
+<h1>Team "{{ team.name }}" <small>{{ team.topic }}</small></h1>
+{% endblock %}
 
+{% block content %}
 {% if teamMembers %}
-<ul>
-	{% for member in teamMembers %}
-	<li>{{ member.name }}, {{ member.short }}
-		<form method="POST" action="{% url 'members:deleteMember' member.id %}">
-			{% csrf_token %}
-			<input type="submit" value="delete">
-		</form>
-	</li>
-	{% endfor %}
-</ul>
-<div><a href="{% url 'members:create' %}">add a member</a></div>
+<div>
+    <table class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Token</th>
+				<th></th>
+			</tr>
+        </thead>
+        <tbody>
+		{% for member in teamMembers %}
+			<tr>
+                <td>{{ member.id }}</td>
+                <td>{{ member.name }}</td>
+				<td>{{ member.short }}</td>
+                <td>
+					<form method="POST" action="{% url 'members:deleteMember' member.id %}">
+					{% csrf_token %}
+						<button type="submit" class="btn btn-xs btn-danger pull-right">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
+					</form>
+				</td>
+            </tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>
 {% else %}
-<div>No members were added to this team yet. <a href="{% url 'members:create' %}">Add One</a></div>
+<div class="alert alert-danger" role="alert">No members were added to this team yet.</div>
 {% endif %}
+{% endblock %}
+
+{% block next %}
+<a class="btn btn-success pull-right" href="{% url 'members:create' %}">add a new member</a>
 {% endblock %}

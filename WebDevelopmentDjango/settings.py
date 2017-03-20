@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 	'WebDevelopmentDjango',
 	'team',
 	'members',
+	'bootstrap3',
 ]
 
 MIDDLEWARE = [

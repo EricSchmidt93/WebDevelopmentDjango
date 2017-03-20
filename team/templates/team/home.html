@@ -10,7 +10,7 @@
     <table class="table table-striped">
 		<thead>
 			<tr>
-				<th>#</th>
+				<th>ID</th>
 				<th>Team Name</th>
 				<th></th>
 			</tr>
@@ -23,7 +23,7 @@
                 <td>
 					<form method="POST" action="{% url 'teams:deleteTeam' team.id %}">
 					{% csrf_token %}
-						<button type="submit" class="btn btn-xs btn-danger">
+						<button type="submit" class="btn btn-xs btn-danger pull-right">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</button>
 					</form>
@@ -34,7 +34,7 @@
 	</table>
 </div>
 {% else %}
-<div>No teams have been created yet.</div>
+<div class="alert alert-danger" role="alert">No teams have been created yet.</div>
 {% endif %}
 {% endblock %}
 
