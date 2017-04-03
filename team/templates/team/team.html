@@ -8,15 +8,10 @@
 <ul>
 	{% for member in teamMembers %}
 	<li>{{ member.name }}, {{ member.short }}
-		<form method="POST" action="{% url 'members:deleteMember' member.id %}">
-			{% csrf_token %}
-			<input type="submit" value="delete">
-		</form>
 	</li>
 	{% endfor %}
 </ul>
-<div><a href="{% url 'members:create' %}">add a member</a></div>
 {% else %}
-<div>No members were added to this team yet. <a href="{% url 'members:create' %}">Add One</a></div>
+<div>No members were added to this team yet.</div>
 {% endif %}
 {% endblock %}
