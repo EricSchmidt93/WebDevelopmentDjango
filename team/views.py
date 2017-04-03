@@ -7,33 +7,9 @@ from .models import *
 from django.core.urlresolvers import reverse_lazy
 
 
-class HomeView(DetailView):
-
-    """
-    Teamliste
-    """
-    template_name = "team/home.html"
-    model = Team
-    context_object_name = "teams"
-    
-    def get_object(self):
-        return Team.objects.all()
-
-        
-class CreateTeamView(CreateView):
-
-    """
-    Team erstellen
-    """
-    template_name = "team/create.html"
-    model = Team
-    success_url = reverse_lazy('teams:home')
-    fields = ['name', 'topic']
-        
-    
-class TeamView(TemplateView):
+class HomeView(TemplateView):
 
     """
     Dummy
     """
-    template_name = "home.html"
+    template_name = "team/home.html"
